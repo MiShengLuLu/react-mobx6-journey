@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+// import App from './App';
+import Couter from './components/Couter';
 import reportWebVitals from './reportWebVitals';
+import CouterStore from './stores/CouterStore';
+
+const store = new CouterStore()
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Couter store={store} />
   </React.StrictMode>,
   document.getElementById('root')
 );
