@@ -1,27 +1,24 @@
-import { Component } from 'react'
+import { observer } from 'mobx-react-lite'
 
-class todoList extends Component {
-  render () {
-    const { todos } = this.props
-    return (
-      <ul className="todo-list">
-        {
-          todos.map(todo => {
-            return (
-              <li key={todo.id}>
-                <div className="view">
-                  <input className="toggle" type="checkbox" />
-                  <label>{todo.title}</label>
-                  <button className="destroy"></button>
-                </div>
-                <input className="edit" />
-              </li>
-            )
-          })
-        }
-      </ul>
-    )
-  }
+function TodoList ({ todos }) {
+  return (
+    <ul className="todo-list">
+      {
+        todos.map(todo => {
+          return (
+            <li key={todo.id}>
+              <div className="view">
+                <input className="toggle" type="checkbox" />
+                <label>{todo.title}</label>
+                <button className="destroy"></button>
+              </div>
+              <input className="edit" />
+            </li>
+          )
+        })
+      }
+    </ul>
+  )
 }
 
-export default todoList
+export default observer(TodoList)

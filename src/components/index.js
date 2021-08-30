@@ -1,16 +1,16 @@
-import { Component } from 'react';
-import AddTodo from './addTodo';
-import TodoList from './todoList';
-import TodoExtra from './todoExtra';
+import TodoHeader from './todoHeader'
+import TodoList from './todoList'
+import TodoExtra from './todoExtra'
+import { observer } from 'mobx-react-lite'
 
-class App extends Component {
-  render() {
-    return <section className="todoapp">
-      <AddTodo />
-      <TodoList todos={this.props.store.todos} />
+function App ({ store }) {
+  return (
+    <section className="todoapp">
+      <TodoHeader addTodo={title => store.addTodo(title)} />
+      <TodoList todos={store.todos} />
       <TodoExtra />
     </section>
-  }
+  )
 }
 
-export default App;
+export default observer(App);
