@@ -5,10 +5,17 @@ import './index.css';
 import App from './components';
 import './index.css'
 import reportWebVitals from './reportWebVitals';
+import todoListStore from './stores/todoListStore';
+import todoViewStore from './stores/todoViewStore';
+
+const store = new todoListStore([
+  new todoViewStore('hello Mobx'),
+  new todoViewStore('hello React')
+])
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <App store={store} />
   </React.StrictMode>,
   document.getElementById('root')
 );

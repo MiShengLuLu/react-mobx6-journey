@@ -7,7 +7,7 @@ class App extends Component {
   render() {
     return <section className="todoapp">
       <AddTodo />
-      <TodoList />
+      <TodoList todos={this.props.store.todos} />
       <TodoExtra />
     </section>
   }

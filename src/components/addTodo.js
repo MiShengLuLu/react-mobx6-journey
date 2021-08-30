@@ -3,9 +3,9 @@ import { Component } from 'react'
 class addTodo extends Component {
   render () {
     return (
-      <header class="header">
+      <header className="header">
         <h1>todos</h1>
-        <input class="new-todo" placeholder="What needs to be done?" />
+        <input className="new-todo" placeholder="What needs to be done?" />
       </header>
     )
   }

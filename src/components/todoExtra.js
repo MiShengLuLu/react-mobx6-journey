@@ -3,11 +3,11 @@ import { Component } from 'react'
 class todoExtra extends Component {
   render () {
     return (
-      <footer class="footer">
-        <span class="todo-count"><strong>0</strong> item left</span>
-        <ul class="filters">
+      <footer className="footer">
+        <span className="todo-count"><strong>0</strong> item left</span>
+        <ul className="filters">
           <li>
-            <button class="selected">All</button>
+            <button className="selected">All</button>
           </li>
           <li>
             <button>Active</button>
@@ -17,7 +17,7 @@ class todoExtra extends Component {
           </li>
         </ul>
         
-        <button class="clear-completed">Clear completed</button>
+        <button className="clear-completed">Clear completed</button>
       </footer>
     )
   }

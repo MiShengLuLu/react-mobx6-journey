@@ -2,24 +2,23 @@ import { Component } from 'react'
 
 class todoList extends Component {
   render () {
+    const { todos } = this.props
     return (
-      <ul class="todo-list">
-        <li class="completed">
-          <div class="view">
-            <input class="toggle" type="checkbox" />
-            <label>Taste JavaScript</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" />
-        </li>
-        <li>
-          <div class="view">
-            <input class="toggle" type="checkbox" />
-            <label>Buy a unicorn</label>
-            <button class="destroy"></button>
-          </div>
-          <input class="edit" />
-        </li>
+      <ul className="todo-list">
+        {
+          todos.map(todo => {
+            return (
+              <li key={todo.id}>
+                <div className="view">
+                  <input className="toggle" type="checkbox" />
+                  <label>{todo.title}</label>
+                  <button className="destroy"></button>
+                </div>
+                <input className="edit" />
+              </li>
+            )
+          })
+        }
       </ul>
     )
   }
