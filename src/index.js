@@ -6,13 +6,6 @@ import App from './components/Todo';
 import './index.css'
 import reportWebVitals from './reportWebVitals';
 import RootStore, { RootStoreProvider } from './stores/rootStore'
-// import todoListStore from './stores/todoListStore';
-// import todoViewStore from './stores/todoViewStore';
-
-// const store = new todoListStore([
-//   new todoViewStore('hello Mobx'),
-//   new todoViewStore('hello React')
-// ])
 
 const rootStore = new RootStore()
 
