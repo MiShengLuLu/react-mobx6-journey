@@ -1,20 +1,33 @@
 import { action, makeObservable, observable } from 'mobx'
 
 class todoViewStore {
-  id = Math.random()
-  title = ''
-  completed = false
-  constructor (title) {
-    this.title = title
+  constructor (todo) {
+    this.title = todo.title
+    this.id = todo.id
+    this.completed = todo.completed || false
+    this.isEdit = false
     makeObservable(this, {
       completed: observable,
+      id: observable,
+      isEdit: observable,
       // toggle: action
-      toggle: action.bound
+      toggle: action.bound,
+      modifyTodoIsEdit: action.bound,
+      modifyTodoTitle: action.bound
     })
   }
 
   toggle () {
     this.completed = !this.completed
+  }
+
+  modifyTodoIsEdit () {
+    this.isEdit = !this.isEdit
+  }
+
+  modifyTodoTitle (title) {
+    this.title = title
+    this.modifyTodoIsEdit()
   }
 }
 

@@ -3,13 +3,19 @@ import { action, computed, makeObservable, observable, runInAction } from 'mobx'
 import axios from 'axios'
 
 class todoListStore {
-  todos = []
-  constructor (todos) {
-    if (todos) this.todos = todos
+  constructor () {
+    this.todos = []
+    this.condition = 'All'
+    // if (todos) this.todos = todos
     makeObservable(this, {
       todos: observable,
       addTodo: action,
-      unCompletedTodoCount: computed
+      unCompletedTodoCount: computed,
+      removeTodo: action.bound,
+      condition: observable,
+      filterCondition: action.bound,
+      filterTodo: computed,
+      clearCompletedTodos: action.bound
     })
     this.loadTodos()
   }
@@ -28,7 +34,40 @@ class todoListStore {
   }
 
   addTodo (title) {
-    this.todos.push(new todoViewStore(title))
+    this.todos.push(new todoViewStore({
+      title,
+      id: this.createId()
+    }))
+  }
+
+  removeTodo (id) {
+    this.todos = this.todos.filter(item => item.id !== id)
+  }
+
+  createId () {
+    if (!this.todos.length) return 1
+    return this.todos.reduce((id, todo) => (id < todo.id ? todo.id : id), 0) + 1
+  }
+
+  // 过滤
+  filterCondition (condition) {
+    this.condition = condition
+  }
+
+  get filterTodo () {
+    switch (this.condition) {
+      case 'Active':
+        return this.todos.filter(item => !item.completed)
+      case 'Completed':
+        return this.todos.filter(item => item.completed)
+      default:
+        return this.todos
+    }
+  }
+
+  // 清除
+  clearCompletedTodos () {
+    this.todos = this.todos.filter(item => !item.completed)
   }
 }
 
