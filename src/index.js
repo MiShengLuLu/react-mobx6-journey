@@ -1,22 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-// import App from './App';
-import App from './components';
+import Top from './components/Top'
+import App from './components/Todo';
 import './index.css'
 import reportWebVitals from './reportWebVitals';
-import todoListStore from './stores/todoListStore';
-import todoViewStore from './stores/todoViewStore';
+import RootStore, { RootStoreProvider } from './stores/rootStore'
+// import todoListStore from './stores/todoListStore';
+// import todoViewStore from './stores/todoViewStore';
 
-const store = new todoListStore([
-  new todoViewStore('hello Mobx'),
-  new todoViewStore('hello React')
-])
+// const store = new todoListStore([
+//   new todoViewStore('hello Mobx'),
+//   new todoViewStore('hello React')
+// ])
+
+const rootStore = new RootStore()
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App store={store} />
-  </React.StrictMode>,
+  <RootStoreProvider store={rootStore}>
+    <Top />
+    <App />
+  </RootStoreProvider>,
   document.getElementById('root')
 );
 

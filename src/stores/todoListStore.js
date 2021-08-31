@@ -1,5 +1,6 @@
 import todoViewStore from './todoViewStore'
-import { action, makeObservable, observable } from 'mobx'
+import { action, computed, makeObservable, observable, runInAction } from 'mobx'
+import axios from 'axios'
 
 class todoListStore {
   todos = []
@@ -7,9 +8,25 @@ class todoListStore {
     if (todos) this.todos = todos
     makeObservable(this, {
       todos: observable,
-      addTodo: action
+      addTodo: action,
+      unCompletedTodoCount: computed
+    })
+    this.loadTodos()
+  }
+
+  get unCompletedTodoCount () {
+    return this.todos.filter(item => !item.completed).length
+  }
+
+  async loadTodos () {
+    const { data } = await axios
+      .get('http://localhost:3001/todos')
+      .then(res => res)
+    runInAction(() => {
+      data.forEach(item => this.addTodo(item.title))
     })
   }
+
   addTodo (title) {
     this.todos.push(new todoViewStore(title))
   }
