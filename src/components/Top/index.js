@@ -1,29 +1,16 @@
-import { useRootStore } from '../../stores/rootStore'
-import { useEffect } from 'react'
-// import { autorun, reaction, runInAction } from 'mobx'
-import { reaction, runInAction } from 'mobx'
-import { observer } from 'mobx-react-lite'
-
-function Top () {
-  const { topStore } = useRootStore()
-  useEffect(() => {
-    // let person = topStore.person
-    // autorun(() => {
-    //   console.log(person.name)
-    // })
-    reaction(
-      () => topStore.person.name,
-      (current, previous) => {
-        console.log(current, previous)
-      }
-    )
-  })
+function Top() {
   return (
-    <div>
-      <p>{topStore.person.name}</p>
-      <button className="button" onClick={() => runInAction(() => topStore.person.name = '李四')}>按钮</button>
+    <div className="stats">
+      <div className="section">
+        <div className="head">当前</div>
+        <div className="content">个苹果，克</div>
+      </div>
+      <div className="section">
+        <div className="head">已吃掉</div>
+        <div className="content">个苹果，克</div>
+      </div>
     </div>
   )
 }
 
-export default observer(Top)
+export default Top

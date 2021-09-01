@@ -1,19 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Top from './components/Top'
-import App from './components/Todo';
-import './index.css'
 import reportWebVitals from './reportWebVitals';
-import RootStore, { RootStoreProvider } from './stores/rootStore'
-
-const rootStore = new RootStore()
+import App from './components/App';
 
 ReactDOM.render(
-  <RootStoreProvider store={rootStore}>
-    <Top />
-    <App />
-  </RootStoreProvider>,
+  <App />,
   document.getElementById('root')
 );
 
