@@ -3,9 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import reportWebVitals from './reportWebVitals';
 import App from './components/App';
+import RootStore, { RootStoreProvider } from './stores/rootStore';
+
+const rootStore = new RootStore()
 
 ReactDOM.render(
-  <App />,
+  <RootStoreProvider store={rootStore}>
+    <App />
+  </RootStoreProvider>,
   document.getElementById('root')
 );
 
